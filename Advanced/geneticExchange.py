@@ -123,7 +123,11 @@ for idx, item in enumerate(res):
     "metabolite_passive": item[4]["me_passive"]})
 
 df = df.set_index(["cycle"])
-df
+df.to_csv("geneticExchange")
+
+
+
+df = pd.read_csv("geneticExchange", index_col=0)
 
 for column in df.columns[:3]:
     df[column].plot(label = column)
@@ -134,6 +138,3 @@ for column in df.columns[3:]:
     df[column].plot()
 plt.legend()
 plt.show
-
-
-df.to_csv("geneticExchange")
