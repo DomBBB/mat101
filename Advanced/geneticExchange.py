@@ -1,5 +1,6 @@
 import random
 import matplotlib.pyplot as plt
+import pandas as pd
 
 class Organism():
     def __init__(self, size, division_threshold, uptake_rate, metabolic_rate, species="unknown"):
@@ -86,7 +87,7 @@ organism_passive = Organism(100, 200, lambda x : 4, lambda x : 1, "passive")
 environment = Environment(10**3, 1000, [organism_active, organism_passive])
 
 res = []
-for num in range(5*10**3):
+for num in range(3*10**3):
     environment.update()
     active = 0
     passive = 0
@@ -106,31 +107,33 @@ for num in range(5*10**3):
             attributes["me_passive"] = attributes["me_passive"] + 1
     res.append((num+1, len(environment.population), active, passive, attributes))
 
-idx_ls = []
-pop_ls = []
-act_ls = []
-pas_ls = []
-up_ac = []
-up_pa = []
-me_ac = []
-me_pa = []
-for item in res:
-    idx_ls.append(item[0])
-    pop_ls.append(item[1])
-    act_ls.append(item[2])
-    pas_ls.append(item[3])
-    up_ac.append(item[4]["up_active"])
-    up_pa.append(item[4]["up_passive"])
-    me_ac.append(item[4]["me_active"])
-    me_pa.append(item[4]["me_passive"])
 
-plt.plot(idx_ls, pop_ls)
-plt.plot(idx_ls, act_ls)
-plt.plot(idx_ls, pas_ls)
-plt.show()
 
-plt.plot(idx_ls, up_ac)
-plt.plot(idx_ls, up_pa)
-plt.plot(idx_ls, me_ac)
-plt.plot(idx_ls, me_pa)
-plt.show()
+
+df = pd.DataFrame(columns=["cycle", "population", "no_active", "no_passive", "uptake_active", "uptake_passive", "metabolite_active", "metabolite_passive"], index=list(range(len(res))))
+
+for idx, item in enumerate(res):
+    df.loc[idx] = pd.Series({"cycle": item[0],
+    "population": item[1],
+    "no_active": item[2],
+    "no_passive": item[3],
+    "uptake_active": item[4]["up_active"],
+    "uptake_passive": item[4]["up_passive"],
+    "metabolite_active": item[4]["me_active"],
+    "metabolite_passive": item[4]["me_passive"]})
+
+df = df.set_index(["cycle"])
+df
+
+for column in df.columns[:3]:
+    df[column].plot(label = column)
+plt.legend()
+plt.show
+
+for column in df.columns[3:]:
+    df[column].plot()
+plt.legend()
+plt.show
+
+
+df.to_csv("geneticExchange")
