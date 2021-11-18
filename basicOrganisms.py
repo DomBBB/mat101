@@ -12,10 +12,12 @@ class Organism():
 
     def update(self, available_food = None):
         if self.alive:
+            print(available_food)
             if available_food == None:
                 uptake = self.uptake_rate(self.size)
             else:
                 uptake = min(available_food, self.uptake_rate(self.size))
+            print(uptake)
             self.size = self.size + uptake - self.metabolic_rate(self.size)
             if self.size <= 0:
                 self.alive = False
@@ -26,4 +28,3 @@ class Organism():
                 return False, float(uptake)
         else:
             return "Dead", 0
-

@@ -62,7 +62,11 @@ class Environment():
                 continue
             # If the organism returns the division signal True: Remove organism from population & add 2 new (same parameters, size/2)
             elif divide:
-                size, division_threshold, uptake_rate, metabolic_rate, alive, species = list(organism.__dict__.values())
+                size = organism.__dict__["size"]
+                division_threshold = organism.__dict__["division_threshold"]
+                uptake_rate = organism.__dict__["uptake_rate"]
+                metabolic_rate = organism.__dict__["metabolic_rate"]
+                species = organism.__dict__["species"]
                 self.gene_pool.append([division_threshold, uptake_rate, metabolic_rate])
                 uptake_rate = self.gene_pool[(random.randrange(0,len(self.gene_pool)))][1]
                 metabolic_rate = self.gene_pool[(random.randrange(0,len(self.gene_pool)))][2]
