@@ -66,9 +66,6 @@ class Environment():
 
         # For each organism in the shuffled list
         for organism in shuffle_list:
-            ###
-            # Variant 1
-            ###
             # Update the organism
             if not organism.species == "excreter":
                 divide, eaten_food, excreted = organism.update(self.accumulated_excretions, self.population, self.food)
