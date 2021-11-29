@@ -1,5 +1,6 @@
 import random
 from basicOrganisms import Organism
+
 class Environment():
     def __init__(self, food, refill_rate, population):
         self.food = float(food)

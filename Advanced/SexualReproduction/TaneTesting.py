@@ -24,7 +24,7 @@ plt.plot(time, org1size, label = "variable Rate")
 plt.plot(time, org2size, label = "fixed Rate")
 plt.legend()
 plt.show()
- 
+
 # Testing basicEnvironment
 
 organism1 = Organism(100, 200, lambda x : 5, lambda x : 2, "Specimen Zero")
@@ -45,21 +45,14 @@ organism1 = Organism(100, 200, lambda x : 5, lambda x : 2, "active")
 organism2 = Organism(90, 180, lambda x : 4, lambda x : 1, "passive")
 environment = Environment(1000, 1000, [organism1, organism2])
 kids = 0
-pop_size = [2]
+time = [0]
+pop_size = [len(environment.population)]
 for num in range(5000):
-    environment.update()
+    kids += environment.update()
+    time.append(num + 1)
     pop_size.append(len(environment.population))
 
-time = range(0,5001)
-
+print(kids)
 
 plt.plot(time, pop_size)
 plt.show()
-
-
-
-
-
-
-
-

@@ -19,7 +19,7 @@ class Environment():
         new_organism_list = []
         has_mate = False
         # For each organism in the shuffled list
-        for organism in shuffle_list: 
+        for organism in shuffle_list:
             # Update the organism
             divide, eaten_food = organism.update(self.food)
             # Reduce food by the amount the organism ate.
@@ -29,7 +29,7 @@ class Environment():
                 # If we want to remove dead organisms
             if divide == "Dead":
                 continue
-            # If the organism returns the division signal True: 
+            # If the organism returns the division signal True:
             # Save Organism Data and offer as Mate
             elif divide and not(has_mate):
                 size = organism.__dict__["size"]
@@ -50,13 +50,13 @@ class Environment():
                 new_organism_list.append(organism)
                 # Baby Organism
                 new_organism_list.append(Organism(
-                    size=random.choice([size, size1])/2, 
+                    size=random.choice([size, size1])/2,
                     fertility_threshold=random.choice([fertility_threshold, fertility_threshold1]),
                     uptake_rate=random.choice([uptake_rate, uptake_rate1]),
                     metabolic_rate=random.choice([metabolic_rate, metabolic_rate1]),
-                    species=random.choice([species1,species]) 
-                    )) 
-                
+                    species=random.choice([species1,species])
+                    ))
+
             else:
                 new_organism_list.append(organism)
 

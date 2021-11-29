@@ -12,11 +12,11 @@ class Organism():
         self.alive = True
         self.age_limit = random.randint(80,100)
         self.age = 0
-        
+
 
     def update(self, available_food = None):
-        self.age += 1
         if self.alive:
+            self.age += 0.5
             if available_food == None:
                 uptake = self.uptake_rate(self.size)
             else:
@@ -31,4 +31,3 @@ class Organism():
                 return False, float(uptake)
         else:
             return "Dead", 0
-
