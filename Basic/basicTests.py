@@ -7,7 +7,7 @@ import pandas as pd
 # Organism Tests
 ##############
 """
-CHANGE THESE TO LAWS THAT MAKE SENSE FOR A CERTAIN GEOMETRY --> disks, spheres, ...
+CHANGE LAMBDA RATES TO OTHER LAWS THAT MAKE SENSE FOR A CERTAIN GEOMETRY --> disks, spheres, ...
 """
 def basicTest_variableSize(file_folder=None):
     res = []
@@ -62,6 +62,9 @@ def basicTest_variableSize(file_folder=None):
 #################
 # Environment Tests
 #################
+"""
+Are basicTest_Environment6 & basicTest_Environment7 correct?
+"""
 def basicTest_Environment1(file_folder=None):
     res = []
     labels = []
