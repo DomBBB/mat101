@@ -7,13 +7,12 @@ CHANGE LAMBDA RATES TO OTHER VALUES TO OBTAIN DIFFERENT GRAPHS
 """
 def naturalSelectionTest1(file_folder=None):
     res = []
-    labels = []
+    labels = ["cycle"]
 
     for trial in range(3):
         organism_active = Organism(100, 200, lambda x : 5, lambda x : 2, "active")
         organism_passive = Organism(100, 200, lambda x : 4, lambda x : 1, "passive")
         environment1 = Environment(10**3, 10**3, [organism_active, organism_passive])
-        labels.append("cycle" + "__t" + str(trial+1))
         labels.append("population_active" + "__t" + str(trial+1))
         labels.append("population_passive" + "__t" + str(trial+1))
         labels.append("population_total" + "__t" + str(trial+1))
@@ -40,23 +39,21 @@ def naturalSelectionTest1(file_folder=None):
                                                labels[1]: res[0][idx][1],
                                                labels[2]: res[0][idx][2],
                                                labels[3]: res[0][idx][3],
-                                               labels[4]: res[1][idx][0],
-                                               labels[5]: res[1][idx][1],
-                                               labels[6]: res[1][idx][2],
-                                               labels[7]: res[1][idx][3],
-                                               labels[8]: res[2][idx][0],
-                                               labels[9]: res[2][idx][1],
-                                               labels[10]: res[2][idx][2],
-                                               labels[11]: res[2][idx][3]})
+                                               labels[4]: res[1][idx][1],
+                                               labels[5]: res[1][idx][2],
+                                               labels[6]: res[1][idx][3],
+                                               labels[7]: res[2][idx][1],
+                                               labels[8]: res[2][idx][2],
+                                               labels[9]: res[2][idx][3]})
 
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
         df[column].plot(ax=axes[0], x=df.columns[0])
-    for column in df.columns[5:8]:
-        df[column].plot(ax=axes[1], x=df.columns[4])
-    for column in df.columns[9:12]:
-        df[column].plot(ax=axes[2], x=df.columns[8], label=column[:column.find("__t")])
+    for column in df.columns[4:7]:
+        df[column].plot(ax=axes[1], x=df.columns[0])
+    for column in df.columns[7:10]:
+        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
 
     axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
           fancybox=True, shadow=True, ncol=5)
@@ -68,13 +65,12 @@ def naturalSelectionTest1(file_folder=None):
 
 def naturalSelectionTest2(file_folder=None):
     res = []
-    labels = []
+    labels = ["cycle"]
 
     for trial in range(3):
         organism_active = Organism(100, 200, lambda x : 5, lambda x : 2, "active")
         organism_passive = Organism(100, 200, lambda x : 4.95, lambda x : 1.95, "passive")
         environment1 = Environment(10**3, 10**3, [organism_active, organism_passive])
-        labels.append("cycle" + "__t" + str(trial+1))
         labels.append("population_active" + "__t" + str(trial+1))
         labels.append("population_passive" + "__t" + str(trial+1))
         labels.append("population_total" + "__t" + str(trial+1))
@@ -101,23 +97,21 @@ def naturalSelectionTest2(file_folder=None):
                                                labels[1]: res[0][idx][1],
                                                labels[2]: res[0][idx][2],
                                                labels[3]: res[0][idx][3],
-                                               labels[4]: res[1][idx][0],
-                                               labels[5]: res[1][idx][1],
-                                               labels[6]: res[1][idx][2],
-                                               labels[7]: res[1][idx][3],
-                                               labels[8]: res[2][idx][0],
-                                               labels[9]: res[2][idx][1],
-                                               labels[10]: res[2][idx][2],
-                                               labels[11]: res[2][idx][3]})
+                                               labels[4]: res[1][idx][1],
+                                               labels[5]: res[1][idx][2],
+                                               labels[6]: res[1][idx][3],
+                                               labels[7]: res[2][idx][1],
+                                               labels[8]: res[2][idx][2],
+                                               labels[9]: res[2][idx][3]})
 
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
         df[column].plot(ax=axes[0], x=df.columns[0])
-    for column in df.columns[5:8]:
-        df[column].plot(ax=axes[1], x=df.columns[4])
-    for column in df.columns[9:12]:
-        df[column].plot(ax=axes[2], x=df.columns[8], label=column[:column.find("__t")])
+    for column in df.columns[4:7]:
+        df[column].plot(ax=axes[1], x=df.columns[0])
+    for column in df.columns[7:10]:
+        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
 
     axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
           fancybox=True, shadow=True, ncol=5)
