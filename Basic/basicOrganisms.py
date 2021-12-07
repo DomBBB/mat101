@@ -1,6 +1,5 @@
 import random
 
-
 class Organism():
     def __init__(self, size, division_threshold, uptake_rate, metabolic_rate, species="unknown"):
         self.size = float(size)
