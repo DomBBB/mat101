@@ -5,7 +5,7 @@ import pandas as pd
 """
 CHANGE LAMBDA RATES TO OTHER VALUES TO OBTAIN DIFFERENT GRAPHS
 """
-def naturalSelectionTest1(file_folder=None):
+def save_naturalSelectionTest1(file_folder):
     res = []
     labels = ["cycle"]
 
@@ -46,6 +46,12 @@ def naturalSelectionTest1(file_folder=None):
                                                labels[8]: res[2][idx][2],
                                                labels[9]: res[2][idx][3]})
 
+    df.to_csv(file_folder + "naturalSelectionTest1.csv")
+
+def retrieve_naturalSelectionTest1(file_folder):
+    df = pd.read_csv(file_folder + "naturalSelectionTest1.csv", index_col=0)
+    print(df)
+
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
@@ -59,11 +65,11 @@ def naturalSelectionTest1(file_folder=None):
           fancybox=True, shadow=True, ncol=5)
     plt.show
 
-    df
-    #df.to_csv(file_folder + "naturalSelectionTest1.csv")
-    # df = pd.read_csv(file_folder + "naturalSelectionTest1.csv", index_col=0)
+# save_naturalSelectionTest1("DataCollection/")
+retrieve_naturalSelectionTest1("DataCollection/")
 
-def naturalSelectionTest2(file_folder=None):
+
+def save_naturalSelectionTest2(file_folder):
     res = []
     labels = ["cycle"]
 
@@ -104,6 +110,12 @@ def naturalSelectionTest2(file_folder=None):
                                                labels[8]: res[2][idx][2],
                                                labels[9]: res[2][idx][3]})
 
+    df.to_csv(file_folder + "naturalSelectionTest2.csv")
+
+def retrieve_naturalSelectionTest2(file_folder):
+    df = pd.read_csv(file_folder + "naturalSelectionTest2.csv", index_col=0)
+    print(df)
+
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
@@ -117,6 +129,5 @@ def naturalSelectionTest2(file_folder=None):
           fancybox=True, shadow=True, ncol=5)
     plt.show
 
-    df
-    #df.to_csv(file_folder + "naturalSelectionTest2.csv")
-    # df = pd.read_csv(file_folder + "naturalSelectionTest2.csv", index_col=0)
+# save_naturalSelectionTest2("DataCollection/")
+retrieve_naturalSelectionTest2("DataCollection/")
