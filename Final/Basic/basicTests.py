@@ -50,8 +50,8 @@ def save_basicTest_variableSize(file_folder=None):
     plt.show
 
     df
-    # df.to_csv(file_folder + "_basicTest_variableSize")
-    # df = pd.read_csv(file_folder + "_basicTest_variableSize", index_col=0)
+    # df.to_csv(file_folder + "_basicTest_variableSize.csv")
+    # df = pd.read_csv(file_folder + "_basicTest_variableSize.csv", index_col=0)
 
 # CHANGE THESE TO TEST DIFFERENT THINGS
 
@@ -94,7 +94,8 @@ def save_basicTest_Environment1(file_folder=None):
     plt.show
 
     df
-    #df.to_csv(file_folder + "_basicTest_variableSize")
+    #df.to_csv(file_folder + "_basicTest_Environment1.csv")
+    # df = pd.read_csv(file_folder + "_basicTest_Environment1.csv", index_col=0)
 
 
 
