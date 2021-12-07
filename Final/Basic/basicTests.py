@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-# CHANGE THESE SO LAWS THAT MAKE SENSE FOR A CERTAIN GEOMETRY --> disks, spheres, ...
+# CHANGE THESE TO LAWS THAT MAKE SENSE FOR A CERTAIN GEOMETRY --> disks, spheres, ...
 
 def save_basicTest_variableSize(file_folder=None):
     res = []
@@ -51,6 +51,7 @@ def save_basicTest_variableSize(file_folder=None):
 
     df
     # df.to_csv(file_folder + "_basicTest_variableSize")
+    # df = pd.read_csv(file_folder + "_basicTest_variableSize", index_col=0)
 
 # CHANGE THESE TO TEST DIFFERENT THINGS
 
@@ -94,6 +95,24 @@ def save_basicTest_Environment1(file_folder=None):
 
     df
     #df.to_csv(file_folder + "_basicTest_variableSize")
+
+
+
+
+
+
+
+organism1 = Organism(100, 200, lambda x : 1/4 * x**(2/3), lambda x : 1/50 * x, "SizeGuys")
+organism2 = Organism(100, 200, lambda x : 5, lambda x : 2, "SpecimentZero")
+
+environment1 = Environment(10**3, 100, [organism1])
+
+
+cap = 100
+
+for round in range(0, cap):
+    print(f"Round {round + 1}: ", end="")
+    environment1.update()
 
 
 
