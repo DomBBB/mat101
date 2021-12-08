@@ -1,4 +1,4 @@
-from Advanced.SpaceAndMovement.spaceAndMovement import Organism, Environment
+from spaceAndMovement import Organism, Environment
 import matplotlib.pyplot as plt
 import pandas as pd
 import copy
