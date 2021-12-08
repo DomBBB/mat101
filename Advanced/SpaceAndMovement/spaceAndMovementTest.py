@@ -81,7 +81,6 @@ def retrieve_spaceAndMovementTest1(file_folder):
 
 def draw_spaceAndMovementTest1(file_folder, lower, upper, cycle):
     df = pd.read_csv(file_folder + "spaceAndMovementTest1.csv", index_col=0)
-    assert(upper-lower <= 30)
     for i in range(lower, upper):
         lst_crate = json.loads(df["food_crates__"+cycle].iloc[i])
         crate_x = [x for x, y, z in lst_crate]
@@ -100,4 +99,4 @@ def draw_spaceAndMovementTest1(file_folder, lower, upper, cycle):
 
 # save_spaceAndMovementTest1("DataCollection/")
 retrieve_spaceAndMovementTest1("DataCollection/")
-draw_spaceAndMovementTest1("DataCollection/", 1300, 1318, "t1")
+draw_spaceAndMovementTest1("DataCollection/", 0, 100, "t1")
