@@ -18,7 +18,7 @@ class Organism:
                 uptake = self.uptake_rate(self.size)
             else:
                 uptake = min(available_food, self.uptake_rate(self.size))
-            self.size = self.size + uptake - self.metabolic_rate(self.size) ### self.size -= self.metabolic_rate(self.size)
+            self.size = self.size + uptake - self.metabolic_rate(self.size)
             if self.size <= 0:
                 self.alive = False
                 return "Dead", float(uptake)

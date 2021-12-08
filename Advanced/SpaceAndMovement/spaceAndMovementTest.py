@@ -2,6 +2,7 @@ from Advanced.SpaceAndMovement.spaceAndMovement import Organism, Environment
 import matplotlib.pyplot as plt
 import pandas as pd
 import copy
+import json
 
 """
 CHANGE LAMBDA RATES TO OTHER VALUES TO OBTAIN DIFFERENT GRAPHS
@@ -20,7 +21,7 @@ def save_spaceAndMovementTest1(file_folder):
         labels.append("food_crates" + "__t" + str(trial+1))
         labels.append("organism_positions" + "__t" + str(trial+1))
         items = []
-        items.append([0, 1, 1, 2, copy.deepcopy(environment1.food_crates), [(organism_active.organism_position, organism_active.species), (organism_passive.organism_position, organism_passive.species)]])
+        items.append([0, 1, 1, 2, copy.deepcopy(environment1.food_crates), [[organism_active.organism_position[0], organism_active.organism_position[1], organism_active.species], [organism_passive.organism_position[0], organism_passive.organism_position[1], organism_passive.species]]])
 
         for num in range(2*10**3):
             environment1.update()
@@ -32,7 +33,7 @@ def save_spaceAndMovementTest1(file_folder):
                     active += 1
                 elif organism.species == "passive":
                     passive += 1
-                positions.append((organism.organism_position, organism.species))
+                positions.append([organism.organism_position[0], organism.organism_position[1], organism.species])
             assert((active+passive) == len(environment1.population))
             items.append([num+1, active, passive, active+passive, copy.deepcopy(environment1.food_crates), positions])
         res.append(items)
@@ -78,8 +79,25 @@ def retrieve_spaceAndMovementTest1(file_folder):
 
     return df
 
+def draw_spaceAndMovementTest1(file_folder, lower, upper, cycle):
+    df = pd.read_csv(file_folder + "spaceAndMovementTest1.csv", index_col=0)
+    assert(upper-lower <= 30)
+    for i in range(lower, upper):
+        lst_crate = json.loads(df["food_crates__"+cycle].iloc[i])
+        crate_x = [x for x, y, z in lst_crate]
+        crate_y = [y for x, y, z in lst_crate]
+        crate_amount = [z for x, y, z in lst_crate]
+        plt.scatter(crate_x, crate_y, s=crate_amount, c="green")
+        stringified = df["organism_positions__"+cycle].iloc[i].replace("active", "0").replace( "passive", "1"). replace("'", "")
+        lst_organisms = json.loads(stringified)
+        org_x = [x for x, y, z in lst_organisms]
+        org_y = [y for x, y, z in lst_organisms]
+        org_color = ["red" if z==0 else "blue" for x, y, z in lst_organisms]
+        plt.scatter(org_x, org_y, c=org_color)
+        plt.xlim([0, 50])
+        plt.ylim([0, 50])
+        plt.show()
+
 # save_spaceAndMovementTest1("DataCollection/")
-df = retrieve_spaceAndMovementTest1("DataCollection/")
-
-
-df[["food_crates__t1", "organism_positions__t1"]]
+retrieve_spaceAndMovementTest1("DataCollection/")
+draw_spaceAndMovementTest1("DataCollection/", 1300, 1318, "t1")
