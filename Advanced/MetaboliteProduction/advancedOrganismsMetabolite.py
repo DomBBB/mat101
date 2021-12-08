@@ -10,8 +10,6 @@
 # * Threshold is NOT reached = No organism dies
 ###
 import random
-import matplotlib.pyplot as plt
-
 
 class Organism():
     def __init__(self, size, division_threshold, uptake_rate, metabolic_rate, excretion_rate, species="unknown"):
@@ -20,8 +18,8 @@ class Organism():
         self.uptake_rate = uptake_rate
         self.metabolic_rate = metabolic_rate
         self.excretion_rate = excretion_rate
-        self.alive = True
         self.species = species
+        self.alive = True
 
     def update(self, accumulated_excretions, population, available_food=None):
         if self.alive:
@@ -29,10 +27,7 @@ class Organism():
                 uptake = self.uptake_rate(self.size)
             else:
                 uptake = min(available_food, self.uptake_rate(self.size))
-            ###
-            # Variant 1 & 3
-            ###
-            self.size = self.size + uptake - accumulated_excretions/len(population)/1000 - self.metabolic_rate(self.size)
+            self.size = self.size + uptake - accumulated_excretions/len(population)/1000 - self.metabolic_rate(self.size) ##DOES THIS MAKE SENSE?
             excretion = self.excretion_rate(self.metabolic_rate(self.size))
             if self.size <= 0:
                 self.alive = False
@@ -42,7 +37,7 @@ class Organism():
             else:
                 return False, float(uptake), float(excretion)
         else:
-            return "Dead", 0, 0
+            return "Dead", float(0), float(0)
 
 class Environment():
     def __init__(self, food, refill_rate, population, reduce_metabolites):
