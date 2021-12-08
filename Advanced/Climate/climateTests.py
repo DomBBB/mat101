@@ -1,4 +1,4 @@
-from Advanced.Climate.climate import Organism, Environment
+from climate import Organism, Environment
 import matplotlib.pyplot as plt
 import pandas as pd
 
