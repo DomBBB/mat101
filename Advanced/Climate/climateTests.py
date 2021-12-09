@@ -1,4 +1,4 @@
-from climate import Organism, Environment
+from Advanced.Climate.climate import Organism, Environment
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -12,7 +12,7 @@ def save_climateTest1(file_folder):
     for trial in range(3):
         organism_active = Organism(100, 200, lambda x : 5, lambda x : 2, "active")
         organism_passive = Organism(100, 200, lambda x : 5, lambda x : 2, "passive")
-        environment1 = Environment(10**3, 10**3, [organism_active, organism_passive])
+        environment1 = Environment(10**3, 10**3, [organism_active, organism_passive], 40, 20)
         labels.append("population_active" + "__t" + str(trial+1))
         labels.append("population_passive" + "__t" + str(trial+1))
         labels.append("population_total" + "__t" + str(trial+1))
@@ -69,7 +69,7 @@ def retrieve_climateTest1(file_folder):
           fancybox=True, shadow=True, ncol=5)
     plt.show
 
-save_climateTest1("DataCollection/")
+# save_climateTest1("DataCollection/")
 retrieve_climateTest1("DataCollection/")
 
 
@@ -80,7 +80,7 @@ def save_climateTest2(file_folder):
     for trial in range(3):
         organism_active = Organism(100, 200, lambda x : 5, lambda x : 2, "active")
         organism_passive = Organism(100, 200, lambda x : 5, lambda x : 2, "passive")
-        environment1 = Environment(10**3, 10**3, [organism_active, organism_passive])
+        environment1 = Environment(10**3, 10**3, [organism_active, organism_passive], 40, 20)
         labels.append("population_active" + "__t" + str(trial+1))
         labels.append("population_passive" + "__t" + str(trial+1))
         labels.append("population_total" + "__t" + str(trial+1))
@@ -137,5 +137,5 @@ def retrieve_climateTest2(file_folder):
           fancybox=True, shadow=True, ncol=5)
     plt.show
 
-save_climateTest2("DataCollection/")
+# save_climateTest2("DataCollection/")
 retrieve_climateTest2("DataCollection/")
