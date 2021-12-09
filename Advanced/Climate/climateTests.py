@@ -2,9 +2,7 @@ from climate import Organism, Environment
 import matplotlib.pyplot as plt
 import pandas as pd
 
-"""
-CHANGE LAMBDA RATES TO OTHER VALUES TO OBTAIN DIFFERENT GRAPHS
-"""
+
 def save_climateTest1(file_folder):
     res = []
     labels = ["cycle", "season (num)"]
@@ -54,8 +52,9 @@ def save_climateTest1(file_folder):
 
 def retrieve_climateTest1(file_folder):
     df = pd.read_csv(file_folder + "climateTest1.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[2:5]:
@@ -63,14 +62,35 @@ def retrieve_climateTest1(file_folder):
     for column in df.columns[5:8]:
         df[column].plot(ax=axes[1], x=df.columns[0])
     for column in df.columns[8:11]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Population Size (Temperature: 20-40)", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["Active: 5, 2", "Passive: 5 ,2", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-# save_climateTest1("DataCollection/")
+def retrieve_climateTest1__t1(file_folder):
+    df = pd.read_csv(file_folder + "climateTest1.csv", index_col=0)
+
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
+
+    for column in df.columns[2:5]:
+        df[column].plot(ax=axes, x=df.columns[0])
+
+    axes.set_title("Population Size (Temperature: 20-40) - Trial 1", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["Active: 5, 2", "Passive: 5 ,2", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
+    plt.show
+
+save_climateTest1("DataCollection/")
 retrieve_climateTest1("DataCollection/")
+retrieve_climateTest1__t1("DataCollection/")
 
 
 def save_climateTest2(file_folder):
@@ -122,8 +142,9 @@ def save_climateTest2(file_folder):
 
 def retrieve_climateTest2(file_folder):
     df = pd.read_csv(file_folder + "climateTest2.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[2:5]:
@@ -131,11 +152,32 @@ def retrieve_climateTest2(file_folder):
     for column in df.columns[5:8]:
         df[column].plot(ax=axes[1], x=df.columns[0])
     for column in df.columns[8:11]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Population Size (Temperature: 20-40)", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["Active: 5, 2", "Passive: 5 ,2", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-# save_climateTest2("DataCollection/")
+def retrieve_climateTest2__t1(file_folder):
+    df = pd.read_csv(file_folder + "climateTest2.csv", index_col=0)
+
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
+
+    for column in df.columns[2:5]:
+        df[column].plot(ax=axes, x=df.columns[0])
+
+    axes.set_title("Population Size (Temperature: 20-40) - Trial 1", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["Active: 5, 2", "Passive: 5 ,2", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
+    plt.show
+
+save_climateTest2("DataCollection/")
 retrieve_climateTest2("DataCollection/")
+retrieve_climateTest2__t1("DataCollection/")

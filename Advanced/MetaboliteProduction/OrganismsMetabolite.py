@@ -1,14 +1,3 @@
-###
-# Variant 1 & 3
-###
-###
-# Variant 2 (killing of every organism at a threshold) would be rather boring,
-# because it would result in one of two (obvious) scenarios:
-# * Threshold is reached = All die (and it stays 0)
-#     --> even when it's a function depending on the size
-#    --> we would have the same boring result
-# * Threshold is NOT reached = No organism dies
-###
 import random
 
 
