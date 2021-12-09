@@ -45,7 +45,7 @@ class Environment():
         if modded_day < 25:
             temperature = (0.8 * modded_day) + 10
         elif modded_day < 50:
-            temperature = -0.064 * (modded_day ** 2)+ (48 *modded_day)-50
+            temperature = -0.064 * (modded_day ** 2)+ (4.8 *modded_day)-50
         elif modded_day < 75:
             temperature = (-0.8 * modded_day) + 70
         else:
