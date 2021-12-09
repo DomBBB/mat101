@@ -2,9 +2,7 @@ from basicOrganismsAndEnvironment import Organism, Environment
 import matplotlib.pyplot as plt
 import pandas as pd
 
-"""
-CHANGE LAMBDA RATES TO OTHER VALUES TO OBTAIN DIFFERENT GRAPHS
-"""
+
 def save_naturalSelectionTest1(file_folder):
     res = []
     labels = ["cycle"]
@@ -50,8 +48,9 @@ def save_naturalSelectionTest1(file_folder):
 
 def retrieve_naturalSelectionTest1(file_folder):
     df = pd.read_csv(file_folder + "naturalSelectionTest1.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
@@ -59,14 +58,35 @@ def retrieve_naturalSelectionTest1(file_folder):
     for column in df.columns[4:7]:
         df[column].plot(ax=axes[1], x=df.columns[0])
     for column in df.columns[7:10]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Natural Selection", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["Active: 5 & 2", "Passive: 4 & 1", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-# save_naturalSelectionTest1("DataCollection/")
+def retrieve_naturalSelectionTest1__t1(file_folder):
+    df = pd.read_csv(file_folder + "naturalSelectionTest1.csv", index_col=0)
+
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
+
+    for column in df.columns[1:4]:
+        df[column].plot(ax=axes, x=df.columns[0])
+
+    axes.set_title("Natural Selection - Trial 1", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["Active: 5 & 2", "Passive: 4 & 1", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
+    plt.show
+
+save_naturalSelectionTest1("DataCollection/")
 retrieve_naturalSelectionTest1("DataCollection/")
+retrieve_naturalSelectionTest1__t1("DataCollection/")
 
 
 def save_naturalSelectionTest2(file_folder):
@@ -75,7 +95,7 @@ def save_naturalSelectionTest2(file_folder):
 
     for trial in range(3):
         organism_active = Organism(100, 200, lambda x : 5, lambda x : 2, "active")
-        organism_passive = Organism(100, 200, lambda x : 4.95, lambda x : 1.95, "passive")
+        organism_passive = Organism(100, 200, lambda x : 4.9, lambda x : 1.9, "passive")
         environment1 = Environment(10**3, 10**3, [organism_active, organism_passive])
         labels.append("population_active" + "__t" + str(trial+1))
         labels.append("population_passive" + "__t" + str(trial+1))
@@ -114,8 +134,9 @@ def save_naturalSelectionTest2(file_folder):
 
 def retrieve_naturalSelectionTest2(file_folder):
     df = pd.read_csv(file_folder + "naturalSelectionTest2.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
@@ -123,11 +144,32 @@ def retrieve_naturalSelectionTest2(file_folder):
     for column in df.columns[4:7]:
         df[column].plot(ax=axes[1], x=df.columns[0])
     for column in df.columns[7:10]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Natural Selection", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["Active: 5 & 2", "Passive: 4.9 & 1.9", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-# save_naturalSelectionTest2("DataCollection/")
+def retrieve_naturalSelectionTest2__t1(file_folder):
+    df = pd.read_csv(file_folder + "naturalSelectionTest2.csv", index_col=0)
+
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
+
+    for column in df.columns[1:4]:
+        df[column].plot(ax=axes, x=df.columns[0])
+
+    axes.set_title("Natural Selection - Trial 1", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["Active: 5 & 2", "Passive: 4.9 & 1.9", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
+    plt.show
+
+save_naturalSelectionTest2("DataCollection/")
 retrieve_naturalSelectionTest2("DataCollection/")
+retrieve_naturalSelectionTest2__t1("DataCollection/")
