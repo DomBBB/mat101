@@ -29,11 +29,10 @@ class Organism():
 
 
 class Environment():
-    def __init__(self, food, refill_rate, population, mut_population):
+    def __init__(self, food, refill_rate, population):
         self.food = float(food)
         self.refill_rate = float(refill_rate)
         self.population = population
-        self.mut_population = mut_population
 
     def update(self):
         random.shuffle(self.population)
@@ -42,7 +41,6 @@ class Environment():
         no_of_divisions = 0
         new_organism_list = []
         no_of_mutations = 0
-        mut_organism_list = []
 
         # For each organism in the shuffled list
         for organism in self.population:
@@ -53,9 +51,9 @@ class Environment():
             # We remove dead organisms
             if divide == "Dead":
                 continue
-            # If the organism returns the division signal True:...
+            # CHANGE MUTATION CHANCE randint(lower, upper)  ##########################################
             elif divide:
-                mutation_chance = random.randint(1, 5)
+                mutation_chance = random.randint(1, 10)
 
                 size = organism.__dict__["size"]
                 division_threshold = organism.__dict__["division_threshold"]
@@ -63,30 +61,21 @@ class Environment():
                 metabolic_rate = organism.__dict__["metabolic_rate"]
                 species = organism.__dict__["species"]
 
-                if mutation_chance < 3:
-                    new_org1 = Organism(size/2 + random.random()*10-5, division_threshold + random.random()*10-5, uptake_rate, metabolic_rate, species)
-                    new_org2 = Organism(size/2 + random.random()*10-5, division_threshold + random.random()*10-5, uptake_rate, metabolic_rate, species)
-                    new_organism_list.append(new_org1)
-                    new_organism_list.append(new_org2)
-                    mut_organism_list.append(new_org1)
-                    mut_organism_list.append(new_org2)
+                # CHANGE MUTATION CHANCE here == 1/10 ##########################################
+                if mutation_chance < 2:
+                    # CHANGE MUTATION PARAMETERS randint(lower, upper) ##########################################
+                    new_organism_list.append(Organism(size/2 + random.randint(2, 15), division_threshold - random.randint(2, 15), uptake_rate, metabolic_rate, species+"M"))
+                    new_organism_list.append(Organism(size/2 + random.randint(2, 15), division_threshold - random.randint(2, 15), uptake_rate, metabolic_rate, species+"M"))
                     no_of_divisions = no_of_divisions + 1
                     no_of_mutations = no_of_mutations + 1
                 else:
-                    new_org1 = Organism(size/2, division_threshold, uptake_rate, metabolic_rate, species)
-                    new_org2 = Organism(size/2, division_threshold, uptake_rate, metabolic_rate, species)
-                    new_organism_list.append(new_org1)
-                    new_organism_list.append(new_org2)
-                    if organism in mut_organism_list:
-                        mut_organism_list.append(new_org1)
-                        mut_organism_list.append(new_org2)
+                    new_organism_list.append(Organism(size/2, division_threshold, uptake_rate, metabolic_rate, species))
+                    new_organism_list.append(Organism(size/2, division_threshold, uptake_rate, metabolic_rate, species))
                     no_of_divisions = no_of_divisions + 1
             else:
                 new_organism_list.append(organism)
 
         self.population = new_organism_list
-        self.mut_population.extend(mut_organism_list)
-        self.mut_population = list(set(self.mut_population))
         # After all organisms have been updated, increase food by the refill_rate.
         self.food = self.food + self.refill_rate
 

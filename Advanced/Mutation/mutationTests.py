@@ -1,4 +1,4 @@
-from Advanced.Mutation.mutation import Organism, Environment
+from mutation import Organism, Environment
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -13,7 +13,7 @@ def save_mutationTest1(file_folder):
     for trial in range(3):
         organism_active = Organism(100, 200, lambda x : 5, lambda x : 2, "active")
         organism_passive = Organism(100, 200, lambda x : 4, lambda x : 1, "passive")
-        environment1 = Environment(10**3, 10**3, [organism_active, organism_passive], [])
+        environment1 = Environment(10**3, 10**3, [organism_active, organism_passive])
         labels.append("population_active" + "__t" + str(trial+1))
         labels.append("population_passive" + "__t" + str(trial+1))
         labels.append("population_total" + "__t" + str(trial+1))
@@ -30,13 +30,13 @@ def save_mutationTest1(file_folder):
             mut_active = 0
             mut_passive = 0
             for organism in environment1.population:
-                if organism.species == "active":
+                if organism.species.startswith("active"):
                     active += 1
-                    if organism in environment1.mut_population:
+                    if not organism.species == "active":
                         mut_active += 1
-                elif organism.species == "passive":
+                elif organism.species.startswith("passive"):
                     passive += 1
-                    if organism in environment1.mut_population:
+                    if not organism.species == "passive":
                         mut_passive += 1
             assert((active+passive) == len(environment1.population))
             assert((mut_active+mut_passive) <= len(environment1.population))
@@ -85,5 +85,5 @@ def retrieve_mutationTest1(file_folder):
           fancybox=True, shadow=True, ncol=5)
     plt.show
 
-save_mutationTest1("DataCollection/")
+# save_mutationTest1("DataCollection/")
 retrieve_mutationTest1("DataCollection/")
