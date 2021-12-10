@@ -71,10 +71,9 @@ class Environment():
         environment attributes. Specifically it reduces the amount of food by
         the amount the organism ate, decides whether the organism should stay
         in the population, be deleted from it or be deleted from it while
-        adding two daughter organisms. Daughter organisms have the same
-        attributes as their parent but only half the size. In the end the food
-        in the environment is refilled according to its instance attributes and
-        the number of divisions that occured in this update is returned.
+        adding two daughter organisms. In the end the food in the environment
+        is refilled according to its instance attributes and the number of
+        divisions that occured in this update is returned.
         """
         random.shuffle(self.population)
 
@@ -90,7 +89,8 @@ class Environment():
             if divide == "Dead":
                 continue
             # If the organism returns the division signal True two daughter
-            # organisms are created.
+            # organisms are created. They have the same attributes as the
+            # parent organism but only half the size.
             elif divide:
                 size = organism.__dict__["size"]
                 division_threshold = organism.__dict__["division_threshold"]
