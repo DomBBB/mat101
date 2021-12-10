@@ -4,9 +4,7 @@ import pandas as pd
 import copy
 import json
 
-"""
-CHANGE LAMBDA RATES TO OTHER VALUES TO OBTAIN DIFFERENT GRAPHS
-"""
+
 def save_spaceAndMovementTest1(file_folder):
     res = []
     labels = ["cycle"]
@@ -62,8 +60,9 @@ def save_spaceAndMovementTest1(file_folder):
 
 def retrieve_spaceAndMovementTest1(file_folder):
     df = pd.read_csv(file_folder + "spaceAndMovementTest1.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
@@ -71,14 +70,31 @@ def retrieve_spaceAndMovementTest1(file_folder):
     for column in df.columns[6:9]:
         df[column].plot(ax=axes[1], x=df.columns[0])
     for column in df.columns[11:14]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Space And Movement", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["Active: 3 & 1", "Passive: 3 & 1", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
-    plt.ylim(bottom=0)
+
     plt.show
 
-    return df
+def retrieve_spaceAndMovementTest1__t1(file_folder):
+    df = pd.read_csv(file_folder + "spaceAndMovementTest1.csv", index_col=0)
+
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
+
+    for column in df.columns[1:4]:
+        df[column].plot(ax=axes, x=df.columns[0])
+
+    axes.set_title("Space And Movement - Trial 1", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["Active: 3 & 1", "Passive: 3 & 1", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
+    plt.show
 
 def draw_spaceAndMovementTest1(file_folder, lower, upper, cycle):
     df = pd.read_csv(file_folder + "spaceAndMovementTest1.csv", index_col=0)
@@ -98,8 +114,9 @@ def draw_spaceAndMovementTest1(file_folder, lower, upper, cycle):
         plt.ylim([0, 50])
         plt.show()
 
-# save_spaceAndMovementTest1("DataCollection/")
+save_spaceAndMovementTest1("DataCollection/")
 retrieve_spaceAndMovementTest1("DataCollection/")
+retrieve_spaceAndMovementTest1__t1("DataCollection/")
 draw_spaceAndMovementTest1("DataCollection/", 0, 100, "t1")
 
 
@@ -158,8 +175,9 @@ def save_spaceAndMovementTest2(file_folder):
 
 def retrieve_spaceAndMovementTest2(file_folder):
     df = pd.read_csv(file_folder + "spaceAndMovementTest2.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
@@ -167,14 +185,31 @@ def retrieve_spaceAndMovementTest2(file_folder):
     for column in df.columns[6:9]:
         df[column].plot(ax=axes[1], x=df.columns[0])
     for column in df.columns[11:14]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Space And Movement", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["Active: 5 & 3", "Passive: 4 & 1", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
-    plt.ylim(bottom=0)
+
     plt.show
 
-    return df
+def retrieve_spaceAndMovementTest2__t1(file_folder):
+    df = pd.read_csv(file_folder + "spaceAndMovementTest2.csv", index_col=0)
+
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
+
+    for column in df.columns[1:4]:
+        df[column].plot(ax=axes, x=df.columns[0])
+
+    axes.set_title("Space And Movement - Trial 1", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["Active: 5 & 3", "Passive: 4 & 1", "Total Population"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
+    plt.show
 
 def draw_spaceAndMovementTest2(file_folder, lower, upper, cycle):
     df = pd.read_csv(file_folder + "spaceAndMovementTest2.csv", index_col=0)
@@ -196,4 +231,5 @@ def draw_spaceAndMovementTest2(file_folder, lower, upper, cycle):
 
 save_spaceAndMovementTest2("DataCollection/")
 retrieve_spaceAndMovementTest2("DataCollection/")
-draw_spaceAndMovementTest2("DataCollection/", 0, 100, "t1")
+retrieve_spaceAndMovementTest2__t1("DataCollection/")
+draw_spaceAndMovementTest2("DataCollection/", 190, 210, "t1")

@@ -2,9 +2,7 @@ from geneticExchange import Organism, Environment
 import matplotlib.pyplot as plt
 import pandas as pd
 
-"""
-CHANGE LAMBDA RATES TO OTHER VALUES TO OBTAIN DIFFERENT GRAPHS
-"""
+
 def save_geneticExchangeTest1(file_folder):
     res = []
     labels = ["cycle"]
@@ -65,35 +63,57 @@ def save_geneticExchangeTest1(file_folder):
                                                labels[12]: res[1][idx][5],
                                                labels[13]: res[1][idx][6],
                                                labels[14]: res[1][idx][7],
-                                               labels[15]: res[1][idx][1],
-                                               labels[16]: res[1][idx][2],
-                                               labels[17]: res[1][idx][3],
-                                               labels[18]: res[1][idx][4],
-                                               labels[19]: res[1][idx][5],
-                                               labels[20]: res[1][idx][6],
-                                               labels[21]: res[1][idx][7]})
+                                               labels[15]: res[2][idx][1],
+                                               labels[16]: res[2][idx][2],
+                                               labels[17]: res[2][idx][3],
+                                               labels[18]: res[2][idx][4],
+                                               labels[19]: res[2][idx][5],
+                                               labels[20]: res[2][idx][6],
+                                               labels[21]: res[2][idx][7]})
 
     df.to_csv(file_folder + "geneticExchangeTest1.csv")
 
 def retrieve_geneticExchangeTest1(file_folder):
     df = pd.read_csv(file_folder + "geneticExchangeTest1.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
-    for column in df.columns[1:8]:
+    for column in df.columns[4:8]:
         df[column].plot(ax=axes[0], x=df.columns[0])
-    for column in df.columns[8:15]:
+    for column in df.columns[11:15]:
         df[column].plot(ax=axes[1], x=df.columns[0])
-    for column in df.columns[15:22]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+    for column in df.columns[18:22]:
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Genetic Exchange", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["Active Uptake: 5", "Passive Uptake: 4", "Active Metabolism: 2", "Passive Metabolism: 1"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-# save_geneticExchangeTest1("DataCollection/")
+def retrieve_geneticExchangeTest1__t1(file_folder):
+    df = pd.read_csv(file_folder + "geneticExchangeTest1.csv", index_col=0)
+
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
+
+    for column in df.columns[4:8]:
+        df[column].plot(ax=axes, x=df.columns[0])
+
+    axes.set_title("Genetic Exchange - Trial 1", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["Active Uptake: 5", "Passive Uptake: 4", "Active Metabolism: 2", "Passive Metabolism: 1"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
+    plt.show
+
+save_geneticExchangeTest1("DataCollection/")
 retrieve_geneticExchangeTest1("DataCollection/")
+retrieve_geneticExchangeTest1__t1("DataCollection/")
 
 
 def save_geneticExchangeTest2(file_folder):
@@ -156,32 +176,54 @@ def save_geneticExchangeTest2(file_folder):
                                                labels[12]: res[1][idx][5],
                                                labels[13]: res[1][idx][6],
                                                labels[14]: res[1][idx][7],
-                                               labels[15]: res[1][idx][1],
-                                               labels[16]: res[1][idx][2],
-                                               labels[17]: res[1][idx][3],
-                                               labels[18]: res[1][idx][4],
-                                               labels[19]: res[1][idx][5],
-                                               labels[20]: res[1][idx][6],
-                                               labels[21]: res[1][idx][7]})
+                                               labels[15]: res[2][idx][1],
+                                               labels[16]: res[2][idx][2],
+                                               labels[17]: res[2][idx][3],
+                                               labels[18]: res[2][idx][4],
+                                               labels[19]: res[2][idx][5],
+                                               labels[20]: res[2][idx][6],
+                                               labels[21]: res[2][idx][7]})
 
     df.to_csv(file_folder + "geneticExchangeTest2.csv")
 
 def retrieve_geneticExchangeTest2(file_folder):
     df = pd.read_csv(file_folder + "geneticExchangeTest2.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
-    for column in df.columns[1:8]:
+    for column in df.columns[4:8]:
         df[column].plot(ax=axes[0], x=df.columns[0])
-    for column in df.columns[8:15]:
+    for column in df.columns[11:15]:
         df[column].plot(ax=axes[1], x=df.columns[0])
-    for column in df.columns[15:22]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+    for column in df.columns[18:22]:
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Genetic Exchange", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["Active Uptake: 2/4 * x**(2/3)", "Passive Uptake: 1/4 * x**(2/3)", "Active Metabolism: 1/20 * x", "Passive Metabolism: 1/50 * x"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-# save_geneticExchangeTest2("DataCollection/")
+def retrieve_geneticExchangeTest2__t1(file_folder):
+    df = pd.read_csv(file_folder + "geneticExchangeTest2.csv", index_col=0)
+
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
+
+    for column in df.columns[4:8]:
+        df[column].plot(ax=axes, x=df.columns[0])
+
+    axes.set_title("Genetic Exchange - Trial 1", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["Active Uptake: 2/4 * x**(2/3)", "Passive Uptake: 1/4 * x**(2/3)", "Active Metabolism: 1/20 * x", "Passive Metabolism: 1/50 * x"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
+    plt.show
+
+save_geneticExchangeTest2("DataCollection/")
 retrieve_geneticExchangeTest2("DataCollection/")
+retrieve_geneticExchangeTest2__t1("DataCollection/")

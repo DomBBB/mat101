@@ -275,7 +275,7 @@ def save_metaboliteTest4(file_folder):
         items = []
         items.append([0, 1, 1, 2])
 
-        for num in range(2*10**3):
+        for num in range(10*10**3):
             environment1.update()
             active = 0
             passive = 0
