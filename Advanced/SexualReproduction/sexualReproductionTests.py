@@ -3,9 +3,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-"""
-CHANGE LAMBDA RATES TO OTHER VALUES TO OBTAIN DIFFERENT GRAPHS
-"""
 def save_sexualReproductionTest1(file_folder):
     res = []
     labels = ["cycle"]
@@ -47,8 +44,9 @@ def save_sexualReproductionTest1(file_folder):
 
 def retrieve_sexualReproductionTest1(file_folder):
     df = pd.read_csv(file_folder + "sexualReproductionTest1.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
@@ -56,35 +54,35 @@ def retrieve_sexualReproductionTest1(file_folder):
     for column in df.columns[4:7]:
         df[column].plot(ax=axes[1], x=df.columns[0])
     for column in df.columns[7:10]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Sexual Reproduction (age limit: 10'000)", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["Environment 1 (refill: 10)", "Environment 2 (refill: 100)", "Environment 3 (refill: 500)"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-def retrieve_sexualReproductionTest1_singlePlot__t1(file_folder):
+def retrieve_sexualReproductionTest1__t1(file_folder):
     df = pd.read_csv(file_folder + "sexualReproductionTest1.csv", index_col=0)
 
     # Font for Plot
-    font = {'family': 'serif',
-            'color':  'black',
-            'weight': 'normal',
-            'size': 16}
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
 
-    labels = ["10", "100", "500"]
-    for idx, column in enumerate(df.columns[1:4]):
-        df[column].plot(x=df.columns[0], label=labels[idx])
+    for column in df.columns[1:4]:
+        df[column].plot(ax=axes, x=df.columns[0])
 
-    # Plot
-    plt.title("Varying Refill Rate", fontdict=font)
-    plt.ylabel("Population Size")
-    plt.xlabel("Time")
-    plt.legend()
+    axes.set_title("Sexual Reproduction (age limit: 10'000) - Trial 1", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["Environment 1 (refill: 10)", "Environment 2 (refill: 100)", "Environment 3 (refill: 500)"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-# save_sexualReproductionTest1("DataCollection/")
+save_sexualReproductionTest1("DataCollection/")
 retrieve_sexualReproductionTest1("DataCollection/")
-retrieve_sexualReproductionTest1_singlePlot__t1("DataCollection/")
+retrieve_sexualReproductionTest1__t1("DataCollection/")
 
 
 def save_sexualReproductionTest2(file_folder):
@@ -132,8 +130,9 @@ def save_sexualReproductionTest2(file_folder):
 
 def retrieve_sexualReproductionTest2(file_folder):
     df = pd.read_csv(file_folder + "sexualReproductionTest2.csv", index_col=0)
-    print(df)
 
+    # Font for Plot
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
     for column in df.columns[1:4]:
@@ -141,35 +140,35 @@ def retrieve_sexualReproductionTest2(file_folder):
     for column in df.columns[4:7]:
         df[column].plot(ax=axes[1], x=df.columns[0])
     for column in df.columns[7:10]:
-        df[column].plot(ax=axes[2], x=df.columns[0], label=column[:column.find("__t")])
+        df[column].plot(ax=axes[2], x=df.columns[0])
 
-    axes[2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.3),
+    axes[0].set_title("Sexual Reproduction (refill: 500)", fontsize = 18)
+    axes[2].set_xlabel("Time", fontsize=14)
+    axes[2].legend(["organisms 1 (age limit:100))", "organisms 2 (age limit: 300)", "organisms 3 (age limit: 500)"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
           fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-def retrieve_sexualReproductionTest2_singlePlot__t1(file_folder):
+def retrieve_sexualReproductionTest2__t2(file_folder):
     df = pd.read_csv(file_folder + "sexualReproductionTest2.csv", index_col=0)
 
     # Font for Plot
-    font = {'family': 'serif',
-            'color':  'black',
-            'weight': 'normal',
-            'size': 16}
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
+    fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
 
-    labels = ["Population_100", "Population_300", "Population_500"]
-    for idx, column in enumerate(df.columns[1:4]):
-        df[column].plot(x=df.columns[0], label=labels[idx])
+    for column in df.columns[4:7]:
+        df[column].plot(ax=axes, x=df.columns[0])
 
-    # Plot
-    plt.title("Varying Age Limit", fontdict=font)
-    plt.ylabel("Population Size")
-    plt.xlabel("Time")
-    plt.legend()
+    axes.set_title("Sexual Reproduction (refill: 500) - Trial 2", fontsize = 18)
+    axes.set_xlabel("Time", fontsize=14)
+    axes.legend(["organisms 1 (age limit:100))", "organisms 2 (age limit: 300)", "organisms 3 (age limit: 500)"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
+          fancybox=True, shadow=True, ncol=5)
+
     plt.show
 
-# save_sexualReproductionTest2("DataCollection/")
+save_sexualReproductionTest2("DataCollection/")
 retrieve_sexualReproductionTest2("DataCollection/")
-retrieve_sexualReproductionTest2_singlePlot__t1("DataCollection/")
+retrieve_sexualReproductionTest2__t2("DataCollection/")
 
 
 def save_sexualReproductionTest3(file_folder):
@@ -205,49 +204,43 @@ def save_sexualReproductionTest3(file_folder):
 
 def retrieve_sexualReproductionTest3(file_folder):
     df = pd.read_csv(file_folder + "sexualReproductionTest3.csv", index_col=0)
-    print(df)
 
     # Font for Plot
-    font = {'family': 'serif',
-            'color':  'black',
-            'weight': 'normal',
-            'size': 16}
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
 
     fig, axes = plt.subplots(nrows=3, ncols=1)
     lbl_ax = axes[1].twinx()
 
-    df["population_size__t1"].plot(ax=axes[0], x=df["cycle"], color="red")
-    df["available_food__t1"].plot(ax=axes[0].twinx(), x=df["cycle"], color="blue")
-    df["population_size__t2"].plot(ax=axes[1], x=df["cycle"], color="red")
-    df["available_food__t2"].plot(ax=lbl_ax, x=df["cycle"], color="blue")
-    df["population_size__t1"].plot(ax=axes[2], x=df["cycle"], color="red")
-    df["available_food__t3"].plot(ax=axes[2].twinx(), x=df["cycle"], color="blue")
+    df["population_size__t1"].plot(ax=axes[0], x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][0])
+    df["available_food__t1"].plot(ax=axes[0].twinx(), x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][1])
+    df["population_size__t2"].plot(ax=axes[1], x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][0])
+    df["available_food__t2"].plot(ax=lbl_ax, x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][1])
+    df["population_size__t1"].plot(ax=axes[2], x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][0])
+    df["available_food__t3"].plot(ax=axes[2].twinx(), x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][1])
 
+    axes[0].set_title("Sexual Reproduction (refill: 500, age limit: 300)", fontsize = 18)
     axes[2].set_xlabel("Time", fontsize=14)
-    axes[1].set_ylabel("Population Size", color = "red", fontsize=14)
-    lbl_ax.set_ylabel("Availabe Food", color = "blue", fontsize=14)
+    axes[1].set_ylabel("Population Size", color = plt.rcParams['axes.prop_cycle'].by_key()['color'][0], fontsize=14)
+    lbl_ax.set_ylabel("Availabe Food", color = plt.rcParams['axes.prop_cycle'].by_key()['color'][1], fontsize=14)
 
     plt.show
 
-def retrieve_sexualReproductionTest3_singlePlot__t1(file_folder):
+def retrieve_sexualReproductionTest3__t1(file_folder):
     df = pd.read_csv(file_folder + "sexualReproductionTest3.csv", index_col=0)
 
     # Font for Plot
-    font = {'family': 'serif',
-            'color':  'black',
-            'weight': 'normal',
-            'size': 16}
+    font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
 
     fig,ax = plt.subplots()
-    ax.plot(df["cycle"].to_list(), df["population_size__t1"].to_list(), color="red", marker=".")
+    ax.plot(df["cycle"].to_list(), df["population_size__t1"].to_list(), color= plt.rcParams['axes.prop_cycle'].by_key()['color'][0], marker=".")
     ax.set_xlabel("Time", fontsize=14)
-    ax.set_ylabel("Population Size", color = "red", fontsize=14)
-    ax.set_title("Available Food vs. Population Size", fontsize = 20)
+    ax.set_ylabel("Population Size",  color = plt.rcParams['axes.prop_cycle'].by_key()['color'][0], fontsize=14)
+    ax.set_title("Sexual Reproduction (refill: 500, age limit: 300) - Trial 1", fontsize = 18)
     ax2 = ax.twinx()
-    ax2.plot(df["cycle"].to_list(), df["available_food__t1"].to_list(), color = "blue", marker=".")
-    ax2.set_ylabel("Availabe Food", color = "blue", fontsize=14)
+    ax2.plot(df["cycle"].to_list(), df["available_food__t1"].to_list(), color =  plt.rcParams['axes.prop_cycle'].by_key()['color'][1], marker=".")
+    ax2.set_ylabel("Availabe Food", color =  plt.rcParams['axes.prop_cycle'].by_key()['color'][1], fontsize=14)
     plt.show()
 
-# save_sexualReproductionTest3("DataCollection/")
+save_sexualReproductionTest3("DataCollection/")
 retrieve_sexualReproductionTest3("DataCollection/")
-retrieve_sexualReproductionTest3_singlePlot__t1("DataCollection/")
+retrieve_sexualReproductionTest3__t1("DataCollection/")
