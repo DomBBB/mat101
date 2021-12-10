@@ -4,11 +4,17 @@ import pandas as pd
 
 
 def save_sexualReproductionTest1(file_folder):
+    """
+    This function stores the results from this test that is done in triplicate
+    in a csv file.
+    """
     res = []
     labels = ["cycle"]
 
+    # The simulation is done three times to account for randomness in the
+    # results. Corresponding labels are created and the results are
+    # appended to a list.
     for trial in range(3):
-        # Two Organisms with same paramers/ Variable Refill Rate
         organism_active = Organism(100, 200, lambda x : 5, lambda x : 2, 10000, "active")
         organism_passive = Organism(100, 200, lambda x : 5, lambda x : 2, 10000, "passive")
         environment1 = Environment(1000, 10, [organism_active, organism_passive])
@@ -26,7 +32,8 @@ def save_sexualReproductionTest1(file_folder):
             items.append([num+1, len(environment1.population), len(environment2.population),  len(environment3.population)])
         res.append(items)
 
-    # STORE
+    # An empty dataframe with the labels and an appropriate number of entries
+    # is created and then filled with the corresponding values.
     df = pd.DataFrame(columns=labels, index=range(len(res[0])))
     for idx, item in enumerate(res[0]):
         df.loc[idx] = pd.Series({labels[0]: res[0][idx][0],
@@ -40,15 +47,23 @@ def save_sexualReproductionTest1(file_folder):
                                                labels[8]: res[2][idx][2],
                                                labels[9]: res[2][idx][3]})
 
+    # The dataframe is stored as a csv file.
     df.to_csv(file_folder + "sexualReproductionTest1.csv")
 
 def retrieve_sexualReproductionTest1(file_folder):
+    """
+    This function retrieves the results from this test from a csv file and
+    plots all trials.
+    """
+    # The dataframe is retrieved from a csv file.
     df = pd.read_csv(file_folder + "sexualReproductionTest1.csv", index_col=0)
 
-    # Font for Plot
+    # An empty plot with subplots is created and formating attributes are
+    # defined.
     font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
+    # The subplots are filled with the corresponding data.
     for column in df.columns[1:4]:
         df[column].plot(ax=axes[0], x=df.columns[0])
     for column in df.columns[4:7]:
@@ -56,6 +71,7 @@ def retrieve_sexualReproductionTest1(file_folder):
     for column in df.columns[7:10]:
         df[column].plot(ax=axes[2], x=df.columns[0])
 
+    # The plot is labeled properly.
     axes[0].set_title("Sexual Reproduction (age limit: 10'000)", fontsize = 18)
     axes[2].set_xlabel("Time", fontsize=14)
     axes[2].legend(["Environment 1 (refill: 10)", "Environment 2 (refill: 100)", "Environment 3 (refill: 500)"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
@@ -64,15 +80,23 @@ def retrieve_sexualReproductionTest1(file_folder):
     plt.show
 
 def retrieve_sexualReproductionTest1__t1(file_folder):
+    """
+    This function retrieves the results from this test from a csv file and
+    plots only one trial.
+    """
+    # The dataframe is retrieved from a csv file.
     df = pd.read_csv(file_folder + "sexualReproductionTest1.csv", index_col=0)
 
-    # Font for Plot
+    # An empty plot with one subplot is created and formatting attributes are
+    # defined.
     font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
 
+    # The subplot is filled with the corresponding data.
     for column in df.columns[1:4]:
         df[column].plot(ax=axes, x=df.columns[0])
 
+    # The plot is labeled properly.
     axes.set_title("Sexual Reproduction (age limit: 10'000) - Trial 1", fontsize = 18)
     axes.set_xlabel("Time", fontsize=14)
     axes.legend(["Environment 1 (refill: 10)", "Environment 2 (refill: 100)", "Environment 3 (refill: 500)"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
@@ -86,11 +110,17 @@ retrieve_sexualReproductionTest1__t1("DataCollection/")
 
 
 def save_sexualReproductionTest2(file_folder):
+    """
+    This function stores the results from this test that is done in triplicate
+    in a csv file.
+    """
     res = []
     labels = ["cycle"]
 
+    # The simulation is done three times to account for randomness in the
+    # results. Corresponding labels are created and the results are
+    # appended to a list.
     for trial in range(3):
-        # Food is fixed and age is variable
         organism_active_100 = Organism(100, 200, lambda x : 5, lambda x : 2, 100, "active")
         organism_passive_100 = Organism(100, 200, lambda x : 5, lambda x : 2, 100, "passive")
         organism_active_300 = Organism(100, 200, lambda x : 5, lambda x : 2, 300, "active")
@@ -112,7 +142,8 @@ def save_sexualReproductionTest2(file_folder):
             items.append([num+1, len(environment1.population), len(environment2.population),  len(environment3.population)])
         res.append(items)
 
-    # STORE
+    # An empty dataframe with the labels and an appropriate number of entries
+    # is created and then filled with the corresponding values.
     df = pd.DataFrame(columns=labels, index=range(len(res[0])))
     for idx, item in enumerate(res[0]):
         df.loc[idx] = pd.Series({labels[0]: res[0][idx][0],
@@ -126,15 +157,23 @@ def save_sexualReproductionTest2(file_folder):
                                                labels[8]: res[2][idx][2],
                                                labels[9]: res[2][idx][3]})
 
+    # The dataframe is stored as a csv file.
     df.to_csv(file_folder + "sexualReproductionTest2.csv")
 
 def retrieve_sexualReproductionTest2(file_folder):
+    """
+    This function retrieves the results from this test from a csv file and
+    plots all trials.
+    """
+    # The dataframe is retrieved from a csv file.
     df = pd.read_csv(file_folder + "sexualReproductionTest2.csv", index_col=0)
 
-    # Font for Plot
+    # An empty plot with subplots is created and formating attributes are
+    # defined.
     font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True, sharey=True)
 
+    # The subplots are filled with the corresponding data.
     for column in df.columns[1:4]:
         df[column].plot(ax=axes[0], x=df.columns[0])
     for column in df.columns[4:7]:
@@ -142,6 +181,7 @@ def retrieve_sexualReproductionTest2(file_folder):
     for column in df.columns[7:10]:
         df[column].plot(ax=axes[2], x=df.columns[0])
 
+    # The plot is labeled properly.
     axes[0].set_title("Sexual Reproduction (refill: 500)", fontsize = 18)
     axes[2].set_xlabel("Time", fontsize=14)
     axes[2].legend(["organisms 1 (age limit:100))", "organisms 2 (age limit: 300)", "organisms 3 (age limit: 500)"], loc='upper center', bbox_to_anchor=(0.5, -0.6),
@@ -150,15 +190,23 @@ def retrieve_sexualReproductionTest2(file_folder):
     plt.show
 
 def retrieve_sexualReproductionTest2__t2(file_folder):
+    """
+    This function retrieves the results from this test from a csv file and
+    plots only one trial.
+    """
+    # The dataframe is retrieved from a csv file.
     df = pd.read_csv(file_folder + "sexualReproductionTest2.csv", index_col=0)
 
-    # Font for Plot
+    # An empty plot with one subplot is created and formatting attributes are
+    # defined.
     font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
     fig, axes = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True)
 
+    # The subplot is filled with the corresponding data.
     for column in df.columns[4:7]:
         df[column].plot(ax=axes, x=df.columns[0])
 
+    # The plot is labeled properly.
     axes.set_title("Sexual Reproduction (refill: 500) - Trial 2", fontsize = 18)
     axes.set_xlabel("Time", fontsize=14)
     axes.legend(["organisms 1 (age limit:100))", "organisms 2 (age limit: 300)", "organisms 3 (age limit: 500)"], loc='upper center', bbox_to_anchor=(0.5, -0.16),
@@ -172,11 +220,17 @@ retrieve_sexualReproductionTest2__t2("DataCollection/")
 
 
 def save_sexualReproductionTest3(file_folder):
+    """
+    This function stores the results from this test that is done in triplicate
+    in a csv file.
+    """
     res = []
     labels = ["cycle"]
 
+    # The simulation is done three times to account for randomness in the
+    # results. Corresponding labels are created and the results are
+    # appended to a list.
     for trial in range(3):
-        # Ploting the Amount of Food vs. Population Size
         organism1 = Organism(100 , 200, lambda x: 5, lambda x: 2, 300, "active")
         organism2 = Organism(100 , 200, lambda x: 5, lambda x: 2, 300, "passive")
         environment1 = Environment(1000, 500, [organism1, organism2])
@@ -189,7 +243,8 @@ def save_sexualReproductionTest3(file_folder):
             items.append([num+1, len(environment1.population), environment1.food])
         res.append(items)
 
-    # STORE
+    # An empty dataframe with the labels and an appropriate number of entries
+    # is created and then filled with the corresponding values.
     df = pd.DataFrame(columns=labels, index=range(len(res[0])))
     for idx, item in enumerate(res[0]):
         df.loc[idx] = pd.Series({labels[0]: res[0][idx][0],
@@ -200,17 +255,24 @@ def save_sexualReproductionTest3(file_folder):
                                                labels[5]: res[2][idx][1],
                                                labels[6]: res[2][idx][2]})
 
+    # The dataframe is stored as a csv file.
     df.to_csv(file_folder + "sexualReproductionTest3.csv")
 
 def retrieve_sexualReproductionTest3(file_folder):
+    """
+    This function retrieves the results from this test from a csv file and
+    plots all trials.
+    """
+    # The dataframe is retrieved from a csv file.
     df = pd.read_csv(file_folder + "sexualReproductionTest3.csv", index_col=0)
 
-    # Font for Plot
+    # An empty plot with subplots is created and formating attributes are
+    # defined.
     font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
-
     fig, axes = plt.subplots(nrows=3, ncols=1)
     lbl_ax = axes[1].twinx()
 
+    # The subplots are filled with the corresponding data.
     df["population_size__t1"].plot(ax=axes[0], x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][0])
     df["available_food__t1"].plot(ax=axes[0].twinx(), x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][1])
     df["population_size__t2"].plot(ax=axes[1], x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][0])
@@ -218,6 +280,7 @@ def retrieve_sexualReproductionTest3(file_folder):
     df["population_size__t1"].plot(ax=axes[2], x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][0])
     df["available_food__t3"].plot(ax=axes[2].twinx(), x=df["cycle"], color=plt.rcParams['axes.prop_cycle'].by_key()['color'][1])
 
+    # The plot is labeled properly.
     axes[0].set_title("Sexual Reproduction (refill: 500, age limit: 300)", fontsize = 18)
     axes[2].set_xlabel("Time", fontsize=14)
     axes[1].set_ylabel("Population Size", color = plt.rcParams['axes.prop_cycle'].by_key()['color'][0], fontsize=14)
@@ -226,12 +289,19 @@ def retrieve_sexualReproductionTest3(file_folder):
     plt.show
 
 def retrieve_sexualReproductionTest3__t1(file_folder):
+    """
+    This function retrieves the results from this test from a csv file and
+    plots only one trial.
+    """
+    # The dataframe is retrieved from a csv file.
     df = pd.read_csv(file_folder + "sexualReproductionTest3.csv", index_col=0)
 
-    # Font for Plot
+    # An empty plot with one subplot is created and formatting attributes are
+    # defined.
     font = {'family': 'serif', 'color':  'black', 'weight': 'normal', 'size': 16}
-
     fig,ax = plt.subplots()
+
+    # The subplot is filled with the corresponding data and labeled properly.
     ax.plot(df["cycle"].to_list(), df["population_size__t1"].to_list(), color= plt.rcParams['axes.prop_cycle'].by_key()['color'][0], marker=".")
     ax.set_xlabel("Time", fontsize=14)
     ax.set_ylabel("Population Size",  color = plt.rcParams['axes.prop_cycle'].by_key()['color'][0], fontsize=14)
